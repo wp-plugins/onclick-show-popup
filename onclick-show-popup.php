@@ -5,7 +5,7 @@ Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
 Author: Gopi.R
-Version: 4.0
+Version: 5.0
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later

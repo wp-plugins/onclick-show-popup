@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 3.4.1
-Stable tag: 4.0
+Tested up to: 3.4.2
+Stable tag: 5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -26,9 +26,7 @@ Onclick show popup It is graphical way to show your content. When the user click
 **Plugin configuration**
 
 * Drag and drop the widget
-
 * Paste the php code to your php file
-		
 * Short code for posts and pages
 
 **Features of this plugin**   	
@@ -79,7 +77,11 @@ Slight change in the short code, Please find the new short code.
 
 = 4.0 =
 
-New demo link, www.gopiplus.com
+New demo link, http://www.gopiplus.com
+
+= 5.0 =
+
+Tested upto 3.4.2
 
 == Changelog ==
 
@@ -98,4 +100,8 @@ Slight change in the short code, Please find the new short code.
 
 = 4.0 =
 
-New demo link, www.gopiplus.com
+New demo link, http://www.gopiplus.com
+
+= 5.0 =
+
+Tested upto 3.4.2

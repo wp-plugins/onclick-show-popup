@@ -5,7 +5,7 @@ Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
 Author: Gopi.R
-Version: 5.0
+Version: 5.1
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later
@@ -27,20 +27,20 @@ function OnclickShowPopup()
 	
 	$sSql = "select OnclickShowPopup_title,OnclickShowPopup_text from ".WP_OnclickShowPopup_TABLE." where OnclickShowPopup_status='YES'";
 	
-	if(@$OnclickShowPopup_widget <> "")
+	if($OnclickShowPopup_widget <> "")
 	{
 		 $sSql = $sSql . " and OnclickShowPopup_group='".$OnclickShowPopup_widget."'";
 	}
 	
-	if(@$OnclickShowPopup_random == "YES")
+	if($OnclickShowPopup_random == "YES")
 	{
 		$sSql = $sSql . " Order by rand()";
 	}
 	
 	$data = $wpdb->get_results($sSql);
-	@$counter = 0;
-	@$li = "";
-	@$div = "";
+	$counter = 0;
+	$li = "";
+	$div = "";
 	if ( ! empty($data) ) 
 	{
 		foreach ( $data as $data ) 
@@ -49,11 +49,11 @@ function OnclickShowPopup()
 			$OnclickShowPopup_text = stripslashes($data->OnclickShowPopup_text);
 			$OnclickShowPopup_text = str_replace("\r\n", "<br />", $OnclickShowPopup_text);
 			
-			@$li = @$li . '<li><a href="#inline_demo'.$counter.'" rel="prettyPhoto['.$OnclickShowPopup_theme.']">'.$OnclickShowPopup_title.'</a></li>';
+			$li = $li . '<li><a href="#inline_demo'.$counter.'" rel="prettyPhoto['.$OnclickShowPopup_theme.']">'.$OnclickShowPopup_title.'</a></li>';
 			
 			
-			@$div = @$div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
-			@$counter = $counter + 1;
+			$div = $div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
+			$counter = $counter + 1;
 		}
 	}
 	else
@@ -68,8 +68,8 @@ function OnclickShowPopup()
 </ul>
 <?php echo @$div; ?> 
 <script type="text/javascript" charset="utf-8">
-  $(document).ready(function(){
-    $("a[rel^='prettyPhoto']").prettyPhoto({
+  jQuery(document).ready(function(){
+    jQuery("a[rel^='prettyPhoto']").prettyPhoto({
 overlay_gallery: false, "theme": '<?php echo $OnclickShowPopup_theme; ?>', social_tools: false, autoplay_slideshow: false
 });
   });
@@ -211,9 +211,9 @@ function OnclickShowPopup_plugins_loaded()
 		wp_register_sidebar_widget('onclick-show-popup', 'Onclick show popup', 'OnclickShowPopup_widget');
 	}
 	
-	if(function_exists('wp_register_sidebar_widget')) 
+	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_sidebar_widget('onclick-show-popup', array('Onclick show popup', 'widgets'), 'OnclickShowPopup_widget_control');
+		wp_register_widget_control('onclick-show-popup', array('Onclick show popup', 'widgets'), 'OnclickShowPopup_widget_control');
 	} 
 }
 
@@ -284,20 +284,20 @@ function OnclickShowPopup_shortcode( $atts )
 	
 	$sSql = "select OnclickShowPopup_title,OnclickShowPopup_text from ".WP_OnclickShowPopup_TABLE." where OnclickShowPopup_status='YES'";
 	
-	if(@$OnclickShowPopup_widget <> "")
+	if($OnclickShowPopup_widget <> "")
 	{
 		 $sSql = $sSql . " and OnclickShowPopup_group='".$OnclickShowPopup_widget."'";
 	}
 	
-	if(@$OnclickShowPopup_random == "YES")
+	if($OnclickShowPopup_random == "YES")
 	{
 		$sSql = $sSql . " Order by rand();";
 	}
 	
 	$data = $wpdb->get_results($sSql);
-	@$counter = 0;
-	@$li = "";
-	@$div = "";
+	$counter = 0;
+	$li = "";
+	$div = "";
 	if ( ! empty($data) ) 
 	{
 		foreach ( $data as $data ) 
@@ -306,20 +306,20 @@ function OnclickShowPopup_shortcode( $atts )
 			$OnclickShowPopup_text = stripslashes($data->OnclickShowPopup_text);
 			$OnclickShowPopup_text = str_replace("\r\n", "<br />", $OnclickShowPopup_text);
 			
-			@$li = @$li . '<li><a href="#inline_demo'.$counter.'" rel="prettyPhoto['.$OnclickShowPopup_theme.$group.']">'.$OnclickShowPopup_title.'</a></li>';
+			$li = $li . '<li><a href="#inline_demo'.$counter.'" rel="prettyPhoto['.$OnclickShowPopup_theme.$group.']">'.$OnclickShowPopup_title.'</a></li>';
 			
 			
-			@$div = @$div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
-			@$counter = $counter + 1;
+			$div = $div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
+			$counter = $counter + 1;
 		}
 	}
 	
 	$prettyPhoto = "'prettyPhoto'";
 	$theme = "'".$OnclickShowPopup_theme."'";
 	
-	@$OnclickShowPopup = '<ul>'.@$li.'</ul>';
-	@$OnclickShowPopup = @$OnclickShowPopup . @$div; 
-	@$OnclickShowPopup = @$OnclickShowPopup . '<script type="text/javascript" charset="utf-8">$(document).ready(function(){$("a[rel^='.$prettyPhoto.']").prettyPhoto({overlay_gallery: false, "theme": '.$theme.', social_tools: false});});</script>';
+	$OnclickShowPopup = '<ul>'.$li.'</ul>';
+	$OnclickShowPopup = $OnclickShowPopup . $div; 
+	$OnclickShowPopup = $OnclickShowPopup . '<script type="text/javascript" charset="utf-8">jQuery(document).ready(function(){jQuery("a[rel^='.$prettyPhoto.']").prettyPhoto({overlay_gallery: false, "theme": '.$theme.', social_tools: false});});</script>';
 
 	return $OnclickShowPopup;	
 }
@@ -328,7 +328,7 @@ function OnclickShowPopup_add_javascript_files()
 {
 	if (!is_admin())
 	{
-		wp_enqueue_script( 'jquery-1.6.1.min', get_option('siteurl').'/wp-content/plugins/onclick-show-popup/js/jquery-1.6.1.min.js');
+		wp_enqueue_script( 'jquery');
 		wp_enqueue_style( 'prettyPhoto', get_option('siteurl').'/wp-content/plugins/onclick-show-popup/css/prettyPhoto.css','','','screen');
 		wp_enqueue_script( 'jquery.prettyPhoto', get_option('siteurl').'/wp-content/plugins/onclick-show-popup/js/jquery.prettyPhoto.js');
 	}	

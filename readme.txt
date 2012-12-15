@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 3.4.2
-Stable tag: 5.0
+Tested up to: 3.5
+Stable tag: 5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -36,7 +36,6 @@ Onclick show popup It is graphical way to show your content. When the user click
 * Easy configuration.
 * Unblockable.
 * Popup appear on text click.
-
 
 == Installation ==
 
@@ -68,7 +67,7 @@ First version
 
 = 2.0 =
 
-Tested upto 3.4
+Tested up to 3.4
 
 = 3.0 =
 
@@ -81,7 +80,13 @@ New demo link, http://www.gopiplus.com
 
 = 5.0 =
 
-Tested upto 3.4.2
+Tested up to 3.4.2
+
+= 5.1 =
+
+Tested up to 3.5
+Avoid registering the alternate jQuery.
+From this version we are using existing wordpress jQuery.
 
 == Changelog ==
 
@@ -91,7 +96,7 @@ First version
 
 = 2.0 =
 
-Tested upto 3.4
+Tested up to 3.4
 
 = 3.0 =
 
@@ -104,4 +109,10 @@ New demo link, http://www.gopiplus.com
 
 = 5.0 =
 
-Tested upto 3.4.2
+Tested up to 3.4.2
+
+= 5.1 =
+
+Tested up to 3.5
+Avoid registering the alternate jQuery.
+From this version we are using existing wordpress jQuery.

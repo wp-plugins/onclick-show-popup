@@ -5,7 +5,7 @@ Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
 Author: Gopi.R
-Version: 5.1
+Version: 6.0
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later
@@ -14,6 +14,12 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_OnclickShowPopup_TABLE", $wpdb->prefix . "onclick_show_popup");
+
+define("WP_OnclickShowPopup_UNIQUE_NAME", "onclick-show-popup");
+define("WP_OnclickShowPopup_TITLE", "Onclick show popup");
+define('WP_OnclickShowPopup_FAV', 'http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/');
+define('WP_OnclickShowPopup_LINK', 'Check official website for more information <a target="_blank" href="'.WP_OnclickShowPopup_FAV.'">click here</a>');
+
 
 if (!session_id()) { session_start(); }
 
@@ -131,72 +137,29 @@ function OnclickShowPopup_add_to_menu()
 {
 	if (is_admin()) 
 	{
-		add_options_page('Onclick show popup', 'Onclick show popup', 'manage_options', __FILE__, 'OnclickShowPopup_admin_options' );
-		add_options_page('Onclick show popup', '', 'manage_options', "onclick-show-popup/content-management.php",'' );
+		add_options_page('Onclick show popup', 'Onclick show popup', 'manage_options', 'onclick-show-popup', 'OnclickShowPopup_admin_options' );
 	}
 }
 
 function OnclickShowPopup_admin_options() 
 {
-	?>
-<div class="wrap">
-  <h2>Onclick show popup - Display option & Widget setup</h2>
-  <?php
-	global $wpdb, $wp_version;
-	
-	$OnclickShowPopup_title = get_option('OnclickShowPopup_title');
-	$OnclickShowPopup_theme = get_option('OnclickShowPopup_theme');
-	$OnclickShowPopup_widget = get_option('OnclickShowPopup_widget');
-	$OnclickShowPopup_title_yes = get_option('OnclickShowPopup_title_yes');
-	$OnclickShowPopup_random = get_option('OnclickShowPopup_random');
-	
-	if (@$_POST['OnclickShowPopup_submit']) 
+	global $wpdb;
+	$current_page = isset($_GET['ac']) ? $_GET['ac'] : '';
+	switch($current_page)
 	{
-		$OnclickShowPopup_title = stripslashes(trim($_POST['OnclickShowPopup_title']));
-		$OnclickShowPopup_theme = stripslashes(trim($_POST['OnclickShowPopup_theme']));
-		$OnclickShowPopup_widget = stripslashes(trim($_POST['OnclickShowPopup_widget']));
-		$OnclickShowPopup_title_yes = stripslashes(trim($_POST['OnclickShowPopup_title_yes']));
-		$OnclickShowPopup_random = stripslashes(trim($_POST['OnclickShowPopup_random']));
-			
-		update_option('OnclickShowPopup_title', $OnclickShowPopup_title );
-		update_option('OnclickShowPopup_theme', $OnclickShowPopup_theme );
-		update_option('OnclickShowPopup_widget', $OnclickShowPopup_widget );
-		update_option('OnclickShowPopup_title_yes', $OnclickShowPopup_title_yes );
-		update_option('OnclickShowPopup_random', $OnclickShowPopup_random );
+		case 'edit':
+			include('pages/content-management-edit.php');
+			break;
+		case 'add':
+			include('pages/content-management-add.php');
+			break;
+		case 'set':
+			include('pages/content-setting.php');
+			break;
+		default:
+			include('pages/content-management-show.php');
+			break;
 	}
-	?>
-  <form name="form_hsa" method="post" action="">
-    <table width="100%" border="0" cellspacing="0" cellpadding="3">
-      <tr>
-        <td align="left"><?php
-	echo '<p>Title:<br><input  style="width: 450px;" maxlength="200" type="text" value="';
-	echo $OnclickShowPopup_title . '" name="OnclickShowPopup_title" id="OnclickShowPopup_title" /></p>';
-	
-	echo '<p>Theme:<br><input  style="width: 250px;" maxlength="15" type="text" value="';
-	echo $OnclickShowPopup_theme . '" name="OnclickShowPopup_theme" id="OnclickShowPopup_theme" /> (dark_rounded/dark_square/default/light_rounded/facebook/light_square)</p>';
-	
-	echo '<p>Display Sidebar Title:<br><input maxlength="3" style="width: 150px;" type="text" value="';
-	echo $OnclickShowPopup_title_yes . '" name="OnclickShowPopup_title_yes" id="OnclickShowPopup_title_yes" /> (YES/NO)</p>';
-	
-	echo '<p>Widget Group:<br><input  style="width: 150px;" maxlength="15" type="text" value="';
-	echo $OnclickShowPopup_widget . '" name="OnclickShowPopup_widget" id="OnclickShowPopup_widget" /></p>';
-	
-	echo '<p>Display Random Order:<br><input maxlength="3" style="width: 150px;" type="text" value="';
-	echo $OnclickShowPopup_random . '" name="OnclickShowPopup_random" id="OnclickShowPopup_random" /> (YES/NO)</p>';
-	
-	echo '<input name="OnclickShowPopup_submit" id="OnclickShowPopup_submit" class="button-primary" value="Submit" type="submit" />';
-	?></td>
-        <td align="center" valign="middle"></td>
-      </tr>
-    </table>
-  </form>
-  <div style="float:right;">
-    <input name="text_management1" lang="text_management" class="button-primary" onClick="location.href='options-general.php?page=onclick-show-popup/content-management.php'" value="Go to - Content Management" type="button" />
-    <input name="setting_management1" lang="setting_management" class="button-primary" onClick="location.href='options-general.php?page=onclick-show-popup/onclick-show-popup.php'" value="Go to - Popup Setting" type="button" />
-  </div>
-  <?php include_once("help.php"); ?>
-</div>
-<?php
 }
 
 function OnclickShowPopup_widget_control() 
@@ -221,7 +184,10 @@ function OnclickShowPopup_widget($args)
 {
 	extract($args);
 	echo $before_widget . $before_title;
-	echo get_option('OnclickShowPopup_title');
+	if(get_option('OnclickShowPopup_title_yes') == "YES")
+	{
+		echo get_option('OnclickShowPopup_title');
+	}
 	echo $after_title;
 	OnclickShowPopup();
 	echo $after_widget;

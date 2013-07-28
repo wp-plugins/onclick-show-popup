@@ -22,45 +22,45 @@ function OnclickShowPopup_submit()
 {
 	if(document.OnclickShowPopup_form.OnclickShowPopup_title.value=="")
 	{
-		alert("Please enter the title.")
+		alert("Please enter the popup title.")
 		document.OnclickShowPopup_form.OnclickShowPopup_title.focus();
 		return false;
 	}
 	else if(document.OnclickShowPopup_form.OnclickShowPopup_text.value=="")
 	{
-		alert("Please enter the message.")
+		alert("Please enter the popup message.")
 		document.OnclickShowPopup_form.OnclickShowPopup_text.focus();
 		return false;
 	}
-	else if(document.OnclickShowPopup_form.OnclickShowPopup_status.value=="")
+	else if(document.OnclickShowPopup_form.OnclickShowPopup_status.value == "" || document.OnclickShowPopup_form.OnclickShowPopup_status.value == "Select")
 	{
 		alert("Please select the display status.")
 		document.OnclickShowPopup_form.OnclickShowPopup_status.focus();
 		return false;
 	}
-	else if(document.OnclickShowPopup_form.OnclickShowPopup_group.value=="")
+	else if(document.OnclickShowPopup_form.OnclickShowPopup_group.value == "" || document.OnclickShowPopup_form.OnclickShowPopup_group.value == "Select")
 	{
-		alert("Please enter the group name. this field is used to group the message.")
+		alert("Please select popup group, this is to group the popup message..")
 		document.OnclickShowPopup_form.OnclickShowPopup_group.focus();
 		return false;
 	}
 }
 
-function _OnclickShowPopup_delete(id)
+function OnclickShowPopup_delete(id)
 {
 	if(confirm("Do you want to delete this record?"))
 	{
-		document.OnclickShowPopup_Display.action="options-general.php?page=onclick-show-popup/content-management.php&AC=DEL&DID="+id;
-		document.OnclickShowPopup_Display.submit();
+		document.frm_OnclickShowPopup_display.action="options-general.php?page=onclick-show-popup&ac=del&did="+id;
+		document.frm_OnclickShowPopup_display.submit();
 	}
 }	
 
-function _OnclickShowPopup_redirect()
+function OnclickShowPopup_redirect()
 {
-	window.location = "options-general.php?page=onclick-show-popup/content-management.php";
+	window.location = "options-general.php?page=onclick-show-popup";
 }
 
-function _OnclickShowPopup_help()
+function OnclickShowPopup_help()
 {
 	window.open("http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/");
 }

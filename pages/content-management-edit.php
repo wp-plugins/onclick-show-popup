@@ -13,7 +13,7 @@ $result = $wpdb->get_var($sSql);
 
 if ($result != '1')
 {
-	?><div class="error fade"><p><strong>Oops, selected details doesn't exist.</strong></p></div><?php
+	?><div class="error fade"><p><strong><?php _e('Oops, selected details doesnt exist', 'onclick-show-popup'); ?></strong></p></div><?php
 }
 else
 {
@@ -50,14 +50,14 @@ if (isset($_POST['OnclickShowPopup_form_submit']) && $_POST['OnclickShowPopup_fo
 	$form['OnclickShowPopup_title'] = isset($_POST['OnclickShowPopup_title']) ? $_POST['OnclickShowPopup_title'] : '';
 	if ($form['OnclickShowPopup_title'] == '')
 	{
-		$OnclickShowPopup_errors[] = __('Please enter the popup title.', WP_OnclickShowPopup_UNIQUE_NAME);
+		$OnclickShowPopup_errors[] = __('Please enter the popup title.', 'onclick-show-popup');
 		$OnclickShowPopup_error_found = TRUE;
 	}
 
 	$form['OnclickShowPopup_text'] = isset($_POST['OnclickShowPopup_text']) ? $_POST['OnclickShowPopup_text'] : '';
 	if ($form['OnclickShowPopup_text'] == '')
 	{
-		$OnclickShowPopup_errors[] = __('Please enter the popup message.', WP_OnclickShowPopup_UNIQUE_NAME);
+		$OnclickShowPopup_errors[] = __('Please enter the popup message.', 'onclick-show-popup');
 		$OnclickShowPopup_error_found = TRUE;
 	}
 	
@@ -79,7 +79,7 @@ if (isset($_POST['OnclickShowPopup_form_submit']) && $_POST['OnclickShowPopup_fo
 			);
 		$wpdb->query($sSql);
 		
-		$OnclickShowPopup_success = 'Details was successfully updated.';
+		$OnclickShowPopup_success = __('Details was successfully updated.', 'onclick-show-popup');
 	}
 }
 
@@ -95,27 +95,27 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
 {
 ?>
   <div class="updated fade">
-    <p><strong><?php echo $OnclickShowPopup_success; ?> <a href="<?php echo get_option('siteurl'); ?>/wp-admin/options-general.php?page=onclick-show-popup">Click here</a> to view the details</strong></p>
+    <p><strong><?php echo $OnclickShowPopup_success; ?> <a href="<?php echo WP_OnclickShowPopup_ADMIN_URL; ?>"><?php _e('Click here to view the details', 'onclick-show-popup'); ?></a></strong></p>
   </div>
   <?php
 }
 ?>
-<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-show-popup/pages/setting.js"></script>
+<script language="JavaScript" src="<?php echo WP_OnclickShowPopup_PLUGIN_URL; ?>/pages/setting.js"></script>
 <div class="form-wrap">
 	<div id="icon-edit" class="icon32 icon32-posts-post"><br></div>
-	<h2><?php echo WP_OnclickShowPopup_TITLE; ?></h2>
+	<h2><?php _e('Onclick show popup', 'onclick-show-popup'); ?></h2>
 	<form name="OnclickShowPopup_form" method="post" action="#" onsubmit="return OnclickShowPopup_submit()"  >
-      <h3>Update popup details</h3>
+      <h3><?php _e('Update popup details', 'onclick-show-popup'); ?></h3>
 	  
-	  <label for="tag-title">Popup title</label>
+	  <label for="tag-title"><?php _e('Popup title', 'onclick-show-popup'); ?></label>
       <textarea name="OnclickShowPopup_title" id="OnclickShowPopup_title" cols="130" rows="3"><?php echo esc_html(stripslashes($form['OnclickShowPopup_title'])); ?></textarea>
-      <p>Please enter your popup title.</p>
+      <p><?php _e('Please enter your popup title.', 'onclick-show-popup'); ?></p>
 	  
-	  <label for="tag-message">Popup message</label>
+	  <label for="tag-message"><?php _e('Popup message', 'onclick-show-popup'); ?></label>
       <textarea name="OnclickShowPopup_text" id="OnclickShowPopup_text" cols="130" rows="7"><?php echo esc_html(stripslashes($form['OnclickShowPopup_text'])); ?></textarea>
-      <p>Please enter your popup message. message to show when popup title clicked.</p>
+      <p><?php _e('Please enter your popup message. message to show when popup title clicked.', 'onclick-show-popup'); ?></p>
 	  
-      <label for="tag-select-gallery-group">Select popup group</label>
+      <label for="tag-select-gallery-group"><?php _e('Select popup group', 'onclick-show-popup'); ?></label>
       <select name="OnclickShowPopup_group" id="OnclickShowPopup_group">
 	  <option value='Select'>Select</option>
 	  <?php
@@ -146,25 +146,28 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
 		}
 		?>
       </select>
-      <p>This is to group the popup message. Select your popup group.</p>
+      <p><?php _e('This is to group the popup message. Select your popup group.', 'onclick-show-popup'); ?></p>
       
-	  <label for="tag-display-status">Display status</label>
+	  <label for="tag-display-status"><?php _e('Display status', 'onclick-show-popup'); ?></label>
       <select name="OnclickShowPopup_status" id="OnclickShowPopup_status">
         <option value='Select'>Select</option>
 		<option value='YES' <?php if($form['OnclickShowPopup_status']=='YES') { echo 'selected="selected"' ; } ?>>Yes</option>
         <option value='NO' <?php if($form['OnclickShowPopup_status']=='NO') { echo 'selected="selected"' ; } ?>>No</option>
       </select>
-      <p>Do you want to show this message into the popup window</p>
+      <p><?php _e('Do you want to show this message into the popup window', 'onclick-show-popup'); ?></p>
 	  
       <input name="OnclickShowPopup_id" id="OnclickShowPopup_id" type="hidden" value="">
       <input type="hidden" name="OnclickShowPopup_form_submit" value="yes"/>
       <p class="submit">
-        <input name="publish" lang="publish" class="button add-new-h2" value="Update Details" type="submit" />
-        <input name="publish" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_redirect()" value="Cancel" type="button" />
-        <input name="Help" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_help()" value="Help" type="button" />
+        <input name="publish" lang="publish" class="button add-new-h2" value="<?php _e('Update Details', 'onclick-show-popup'); ?>" type="submit" />
+        <input name="publish" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_redirect()" value="<?php _e('Cancel', 'onclick-show-popup'); ?>" type="button" />
+        <input name="Help" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_help()" value="<?php _e('Help', 'onclick-show-popup'); ?>" type="button" />
       </p>
 	  <?php wp_nonce_field('OnclickShowPopup_form_edit'); ?>
     </form>
 </div>
-<p class="description"><?php echo WP_OnclickShowPopup_LINK; ?></p>
+<p class="description">
+	<?php _e('Check official website for more information', 'onclick-show-popup'); ?>
+	<a target="_blank" href="<?php echo WP_OnclickShowPopup_FAV; ?>"><?php _e('click here', 'onclick-show-popup'); ?></a>
+</p>
 </div>

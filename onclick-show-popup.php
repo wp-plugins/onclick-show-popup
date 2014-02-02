@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
 Author: Gopi.R
-Version: 6.0
+Version: 6.1
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later
@@ -14,18 +13,24 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 global $wpdb, $wp_version;
 define("WP_OnclickShowPopup_TABLE", $wpdb->prefix . "onclick_show_popup");
-
-define("WP_OnclickShowPopup_UNIQUE_NAME", "onclick-show-popup");
-define("WP_OnclickShowPopup_TITLE", "Onclick show popup");
 define('WP_OnclickShowPopup_FAV', 'http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/');
-define('WP_OnclickShowPopup_LINK', 'Check official website for more information <a target="_blank" href="'.WP_OnclickShowPopup_FAV.'">click here</a>');
 
+if ( ! defined( 'WP_OnclickShowPopup_BASENAME' ) )
+	define( 'WP_OnclickShowPopup_BASENAME', plugin_basename( __FILE__ ) );
+	
+if ( ! defined( 'WP_OnclickShowPopup_PLUGIN_NAME' ) )
+	define( 'WP_OnclickShowPopup_PLUGIN_NAME', trim( dirname( WP_OnclickShowPopup_BASENAME ), '/' ) );
+	
+if ( ! defined( 'WP_OnclickShowPopup_PLUGIN_URL' ) )
+	define( 'WP_OnclickShowPopup_PLUGIN_URL', WP_PLUGIN_URL . '/' . WP_OnclickShowPopup_PLUGIN_NAME );
+	
+if ( ! defined( 'WP_OnclickShowPopup_ADMIN_URL' ) )
+	define( 'WP_OnclickShowPopup_ADMIN_URL', get_option('siteurl') . '/wp-admin/options-general.php?page=onclick-show-popup' );
 
 if (!session_id()) { session_start(); }
 
 function OnclickShowPopup()
 {
-	
 	global $wpdb;
 	$OnclickShowPopup_widget = get_option('OnclickShowPopup_widget');
 	$OnclickShowPopup_random = get_option('OnclickShowPopup_random');
@@ -66,13 +71,11 @@ function OnclickShowPopup()
 	{
 		$PopUpData = "No content available in the db with the group name " . $OnclickShowPopup_widget . ". Please check the plugin page or in the admin to find more info.";
 	}
-	
-	
 	?>
 <ul>
-  <?php echo @$li; ?>
+  <?php echo $li; ?>
 </ul>
-<?php echo @$div; ?> 
+<?php echo $div; ?> 
 <script type="text/javascript" charset="utf-8">
   jQuery(document).ready(function(){
     jQuery("a[rel^='prettyPhoto']").prettyPhoto({
@@ -86,9 +89,7 @@ overlay_gallery: false, "theme": '<?php echo $OnclickShowPopup_theme; ?>', socia
 
 function OnclickShowPopup_activation()
 {
-	
 	global $wpdb;
-	
 	$t1 = "This is the demo for Onclick show popup plugin.";
 	$t2 = "This is the demo for Onclick show popup plugin.";
 	$t3 = "This is the demo for Onclick show popup plugin.";
@@ -108,7 +109,7 @@ function OnclickShowPopup_activation()
 			  `OnclickShowPopup_extra1` VARCHAR( 100 ) NOT NULL,
 			  `OnclickShowPopup_extra2` VARCHAR( 100 ) NOT NULL,
 			  `OnclickShowPopup_date` datetime NOT NULL default '0000-00-00 00:00:00',
-			  PRIMARY KEY  (`OnclickShowPopup_id`) )
+			  PRIMARY KEY  (`OnclickShowPopup_id`) ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 			");
 		$iIns = "INSERT INTO `". WP_OnclickShowPopup_TABLE . "` (`OnclickShowPopup_title`, `OnclickShowPopup_text`, `OnclickShowPopup_status`, `OnclickShowPopup_group`, `OnclickShowPopup_date`)"; 
 		$sSql = $iIns . " VALUES ('$t1', '$c1', 'YES', 'Group1', '0000-00-00 00:00:00');";
@@ -120,7 +121,6 @@ function OnclickShowPopup_activation()
 		$sSql = $iIns . " VALUES ('$t4', '$c1', 'YES', 'Group1', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 	}
-	
 	add_option('OnclickShowPopup_title', "Onclick show popup");
 	add_option('OnclickShowPopup_theme', "light_rounded");
 	add_option('OnclickShowPopup_widget', "Group1");
@@ -130,14 +130,15 @@ function OnclickShowPopup_activation()
 
 function OnclickShowPopup_deactivate() 
 {
-
+	// No action required.
 }
 
 function OnclickShowPopup_add_to_menu() 
 {
 	if (is_admin()) 
 	{
-		add_options_page('Onclick show popup', 'Onclick show popup', 'manage_options', 'onclick-show-popup', 'OnclickShowPopup_admin_options' );
+		add_options_page(__('Onclick show popup', 'onclick-show-popup'), 
+				__('Onclick show popup', 'onclick-show-popup'), 'manage_options', 'onclick-show-popup', 'OnclickShowPopup_admin_options' );
 	}
 }
 
@@ -164,19 +165,23 @@ function OnclickShowPopup_admin_options()
 
 function OnclickShowPopup_widget_control() 
 {
-	echo '<p>Onclick show popup.</p>';
+	echo '<p><b>';
+	_e('Onclick show popup', 'onclick-show-popup');
+	echo '.</b> ';
+	_e('Check official website for more information', 'onclick-show-popup');
+	?> <a target="_blank" href="<?php echo WP_OnclickShowPopup_FAV; ?>"><?php _e('click here', 'onclick-show-popup'); ?></a></p><?php
 }
 
 function OnclickShowPopup_plugins_loaded()
 {
 	if(function_exists('wp_register_sidebar_widget')) 
 	{
-		wp_register_sidebar_widget('onclick-show-popup', 'Onclick show popup', 'OnclickShowPopup_widget');
+		wp_register_sidebar_widget('onclick-show-popup', __('Onclick show popup', 'onclick-show-popup'), 'OnclickShowPopup_widget');
 	}
 	
 	if(function_exists('wp_register_widget_control')) 
 	{
-		wp_register_widget_control('onclick-show-popup', array('Onclick show popup', 'widgets'), 'OnclickShowPopup_widget_control');
+		wp_register_widget_control('onclick-show-popup', array( __('Onclick show popup', 'onclick-show-popup'), 'widgets'), 'OnclickShowPopup_widget_control');
 	} 
 }
 
@@ -237,6 +242,8 @@ function OnclickShowPopup_shortcode( $atts )
 {
 	
 	global $wpdb;
+	$group = "";
+	
 	//[onclick-show-popup group="1"]
 	if ( ! is_array( $atts ) )
 	{
@@ -244,7 +251,7 @@ function OnclickShowPopup_shortcode( $atts )
 	}
 	$group = OnclickShowPopup_Group($atts['group']);
 	
-	$OnclickShowPopup_widget = @$group;
+	$OnclickShowPopup_widget = $group;
 	$OnclickShowPopup_random = get_option('OnclickShowPopup_random');
 	$OnclickShowPopup_theme = get_option('OnclickShowPopup_theme');
 	
@@ -295,11 +302,17 @@ function OnclickShowPopup_add_javascript_files()
 	if (!is_admin())
 	{
 		wp_enqueue_script( 'jquery');
-		wp_enqueue_style( 'prettyPhoto', get_option('siteurl').'/wp-content/plugins/onclick-show-popup/css/prettyPhoto.css','','','screen');
-		wp_enqueue_script( 'jquery.prettyPhoto', get_option('siteurl').'/wp-content/plugins/onclick-show-popup/js/jquery.prettyPhoto.js');
+		wp_enqueue_style( 'prettyPhoto', WP_OnclickShowPopup_PLUGIN_URL.'/css/prettyPhoto.css','','','screen');
+		wp_enqueue_script( 'jquery.prettyPhoto', WP_OnclickShowPopup_PLUGIN_URL.'/js/jquery.prettyPhoto.js');
 	}	
 }
 
+function OnclickShowPopup_textdomain() 
+{
+	  load_plugin_textdomain( 'onclick-show-popup', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action('plugins_loaded', 'OnclickShowPopup_textdomain');
 add_shortcode( 'onclick-show-popup', 'OnclickShowPopup_shortcode' );
 add_action('admin_menu', 'OnclickShowPopup_add_to_menu');
 add_action('wp_enqueue_scripts', 'OnclickShowPopup_add_javascript_files');

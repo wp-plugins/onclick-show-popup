@@ -2,7 +2,7 @@
   <div class="form-wrap">
     <div id="icon-edit" class="icon32 icon32-posts-post"><br>
     </div>
-    <h2><?php echo WP_OnclickShowPopup_TITLE; ?></h2>
+    <h2><?php _e('Onclick show popup', 'onclick-show-popup'); ?></h2>
     <?php
 	$OnclickShowPopup_title = get_option('OnclickShowPopup_title');
 	$OnclickShowPopup_theme = get_option('OnclickShowPopup_theme');
@@ -29,20 +29,20 @@
 		
 		?>
 		<div class="updated fade">
-			<p><strong>Details successfully updated.</strong></p>
+			<p><strong><?php _e('Details successfully updated.', 'onclick-show-popup'); ?></strong></p>
 		</div>
 		<?php
 	}
 	?>
-	<script language="JavaScript" src="<?php echo get_option('siteurl'); ?>/wp-content/plugins/onclick-show-popup/pages/setting.js"></script>
-	<h3>Popup setting</h3>
+	<script language="JavaScript" src="<?php echo WP_OnclickShowPopup_PLUGIN_URL; ?>/pages/setting.js"></script>
+	<h3><?php _e('Popup setting', 'onclick-show-popup'); ?></h3>
 	<form name="OnclickShowPopup_form" method="post" action="">
 	
-		<label for="tag-title">Widget title</label>
+		<label for="tag-title"><?php _e('Widget title', 'onclick-show-popup'); ?></label>
 		<input name="OnclickShowPopup_title" type="text" id="OnclickShowPopup_title" size="50" value="<?php echo $OnclickShowPopup_title; ?>" />
-		<p>Please enter widget title.</p>
+		<p><?php _e('Please enter widget title.', 'onclick-show-popup'); ?></p>
 		
-		<label for="tag-title">Theme</label>
+		<label for="tag-title"><?php _e('Theme', 'onclick-show-popup'); ?></label>
 		<select name="OnclickShowPopup_theme" id="OnclickShowPopup_theme">
             <option value='dark_rounded' <?php if($OnclickShowPopup_theme == 'dark_rounded') { echo 'selected' ; } ?>>Dark Rounded</option>
             <option value='dark_square' <?php if($OnclickShowPopup_theme == 'dark_square') { echo 'selected' ; } ?>>Dark Square</option>
@@ -51,23 +51,23 @@
 			<option value='facebook' <?php if($OnclickShowPopup_theme == 'facebook') { echo 'selected' ; } ?>>Facebook</option>
 			<option value='light_square' <?php if($OnclickShowPopup_theme == 'light_square') { echo 'selected' ; } ?>>Light Square</option>
           </select>
-		<p>Please select your theme.</p>
+		<p><?php _e('Please select your theme.', 'onclick-show-popup'); ?></p>
 		
-		<label for="tag-title">Display sidebar title</label>
+		<label for="tag-title"><?php _e('Display sidebar title', 'onclick-show-popup'); ?></label>
 		<select name="OnclickShowPopup_title_yes" id="OnclickShowPopup_title_yes">
 			<option value='YES' <?php if($OnclickShowPopup_title_yes == 'YES') { echo 'selected="selected"' ; } ?>>Yes</option>
 			<option value='NO' <?php if($OnclickShowPopup_title_yes == 'NO') { echo 'selected="selected"' ; } ?>>No</option>
 		</select>
-		<p>Do you want to show widget title?.</p>
+		<p><?php _e('Do you want to show widget title?.', 'onclick-show-popup'); ?></p>
 		
-		<label for="tag-title">Ramdom display</label>
+		<label for="tag-title"><?php _e('Ramdom display', 'onclick-show-popup'); ?></label>
 		<select name="OnclickShowPopup_random" id="OnclickShowPopup_random">
 			<option value='YES' <?php if($OnclickShowPopup_random == 'YES') { echo 'selected="selected"' ; } ?>>Yes</option>
 			<option value='NO' <?php if($OnclickShowPopup_random == 'NO') { echo 'selected="selected"' ; } ?>>No</option>
 		</select>
-		<p>Do you want to show popup in ramdom order?.</p>
+		<p><?php _e('Do you want to show popup in ramdom order?.', 'onclick-show-popup'); ?></p>
 		
-		<label for="tag-title">Popup group</label>
+		<label for="tag-title"><?php _e('Popup group', 'onclick-show-popup'); ?></label>
 		<select name="OnclickShowPopup_widget" id="OnclickShowPopup_widget">
 		<?php
 		$sSql = "SELECT distinct(OnclickShowPopup_group) as OnclickShowPopup_group FROM `".WP_OnclickShowPopup_TABLE."` order by OnclickShowPopup_group";
@@ -86,15 +86,19 @@
 		}
 		?>
 		</select>
-		<p>Please select your slider image group.</p>
+		<p><?php _e('Please select your slider image group.', 'onclick-show-popup'); ?></p>
 		
 		<div style="height:10px;"></div>
 		<input type="hidden" name="OnclickShowPopup_form_submit" value="yes"/>
-		<input name="OnclickShowPopup_submit" id="OnclickShowPopup_submit" class="button add-new-h2" value="Submit" type="submit" />
-		<input name="publish" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_redirect()" value="Cancel" type="button" />
-		<input name="Help" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_help()" value="Help" type="button" />
+		<input name="OnclickShowPopup_submit" id="OnclickShowPopup_submit" class="button add-new-h2" value="<?php _e('Submit', 'onclick-show-popup'); ?>" type="submit" />
+		<input name="publish" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_redirect()" value="<?php _e('Cancel', 'onclick-show-popup'); ?>" type="button" />
+		<input name="Help" lang="publish" class="button add-new-h2" onclick="OnclickShowPopup_help()" value="<?php _e('Help', 'onclick-show-popup'); ?>" type="button" />
 		<?php wp_nonce_field('OnclickShowPopup_form_setting'); ?>
 	</form>
   </div>
-  <br /><p class="description"><?php echo WP_OnclickShowPopup_LINK; ?></p>
+  <br />
+<p class="description">
+	<?php _e('Check official website for more information', 'onclick-show-popup'); ?>
+	<a target="_blank" href="<?php echo WP_OnclickShowPopup_FAV; ?>"><?php _e('click here', 'onclick-show-popup'); ?></a>
+</p>
 </div>

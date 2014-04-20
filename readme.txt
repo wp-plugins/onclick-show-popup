@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 3.8
-Stable tag: 6.1
+Tested up to: 3.9
+Stable tag: 6.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -51,7 +51,7 @@ Yes, add the given code into page/post. See comment 1 to find the short code.
 
 Q2. How to update the popup information/content?
 
-Administration → OnClick Show Popup → Content management
+Administration ==> OnClick Show Popup ==> Content management
 
 == Screenshots ==
 
@@ -100,6 +100,11 @@ New admin layout.
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
+= 6.2 =
+
+1. Tested up to 3.9
+2. Added little security feature.
+
 == Changelog ==
 
 = 1.0 =
@@ -140,3 +145,8 @@ New admin layout.
 1. Tested up to 3.8
 2. Now this plugin supports localization (or internationalization). i.e. option to translate into other languages. 
 Plugin *.po file (onclick-show-popup.po) available in the languages folder.
+
+= 6.2 =
+
+1. Tested up to 3.9
+2. Added little security feature.

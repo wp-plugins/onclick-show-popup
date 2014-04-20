@@ -3,13 +3,15 @@
 Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
-Author: Gopi.R
-Version: 6.1
+Author: Gopi Ramasamy
+Version: 6.2
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
+
+if(preg_match('#' . basename(__FILE__) . '#', $_SERVER['PHP_SELF'])) { die('You are not allowed to call this page directly.'); }
 
 global $wpdb, $wp_version;
 define("WP_OnclickShowPopup_TABLE", $wpdb->prefix . "onclick_show_popup");
@@ -66,24 +68,24 @@ function OnclickShowPopup()
 			$div = $div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
 			$counter = $counter + 1;
 		}
+		?>
+		<ul>
+		  <?php echo $li; ?>
+		</ul>
+		<?php echo $div; ?> 
+		<script type="text/javascript" charset="utf-8">
+		  jQuery(document).ready(function(){
+			jQuery("a[rel^='prettyPhoto']").prettyPhoto({
+		overlay_gallery: false, "theme": '<?php echo $OnclickShowPopup_theme; ?>', social_tools: false, autoplay_slideshow: false
+		});
+		  });
+		</script>
+		<?php
 	}
 	else
 	{
 		$PopUpData = "No content available in the db with the group name " . $OnclickShowPopup_widget . ". Please check the plugin page or in the admin to find more info.";
 	}
-	?>
-<ul>
-  <?php echo $li; ?>
-</ul>
-<?php echo $div; ?> 
-<script type="text/javascript" charset="utf-8">
-  jQuery(document).ready(function(){
-    jQuery("a[rel^='prettyPhoto']").prettyPhoto({
-overlay_gallery: false, "theme": '<?php echo $OnclickShowPopup_theme; ?>', social_tools: false, autoplay_slideshow: false
-});
-  });
-</script>
-<?php
 }
 
 
@@ -285,15 +287,17 @@ function OnclickShowPopup_shortcode( $atts )
 			$div = $div . '<div id="inline_demo'.$counter.'" style="display:none;">'.$OnclickShowPopup_text.'</div>';
 			$counter = $counter + 1;
 		}
+		
+		$prettyPhoto = "'prettyPhoto'";
+		$theme = "'".$OnclickShowPopup_theme."'";
+		$OnclickShowPopup = '<ul>'.$li.'</ul>';
+		$OnclickShowPopup = $OnclickShowPopup . $div; 
+		$OnclickShowPopup = $OnclickShowPopup . '<script type="text/javascript" charset="utf-8">jQuery(document).ready(function(){jQuery("a[rel^='.$prettyPhoto.']").prettyPhoto({overlay_gallery: false, "theme": '.$theme.', social_tools: false});});</script>';
 	}
-	
-	$prettyPhoto = "'prettyPhoto'";
-	$theme = "'".$OnclickShowPopup_theme."'";
-	
-	$OnclickShowPopup = '<ul>'.$li.'</ul>';
-	$OnclickShowPopup = $OnclickShowPopup . $div; 
-	$OnclickShowPopup = $OnclickShowPopup . '<script type="text/javascript" charset="utf-8">jQuery(document).ready(function(){jQuery("a[rel^='.$prettyPhoto.']").prettyPhoto({overlay_gallery: false, "theme": '.$theme.', social_tools: false});});</script>';
-
+	else
+	{
+		$OnclickShowPopup = "No content available in the db with the group name " . $OnclickShowPopup_widget . ". Please check the plugin page or in the admin to find more info.";
+	}
 	return $OnclickShowPopup;	
 }
 

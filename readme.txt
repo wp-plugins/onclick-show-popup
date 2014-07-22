@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 3.9
-Stable tag: 6.2
+Tested up to: 3.9.1
+Stable tag: 6.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -23,12 +23,6 @@ About author : [About author](http://www.gopiplus.com/work/)
 
 Onclick show popup It is graphical way to show your content. When the user clicks on a link, a new window opens and displays the content. This is easy and effective way to show your detail information to user. This plugin use the JQuery script to show the popup content.
 
-**Plugin configuration**
-
-* Drag and drop the widget
-* Paste the php code to your php file
-* Short code for posts and pages
-
 **Features of this plugin**   	
 
 * Simple.
@@ -36,6 +30,12 @@ Onclick show popup It is graphical way to show your content. When the user click
 * Easy configuration.
 * Unblockable.
 * Popup appear on text click.
+
+**Plugin configuration**
+
+* Drag and drop the widget
+* Paste the php code to your php file
+* Short code for posts and pages
 
 == Installation ==
 
@@ -105,6 +105,10 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 1. Tested up to 3.9
 2. Added little security feature.
 
+= 6.3 =
+
+1. Added expiration date option for popup message.
+
 == Changelog ==
 
 = 1.0 =
@@ -150,3 +154,7 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
 1. Tested up to 3.9
 2. Added little security feature.
+
+= 6.3 =
+
+1. Added expiration date option for popup message.

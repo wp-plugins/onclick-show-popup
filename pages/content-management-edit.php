@@ -39,6 +39,7 @@ else
 		'OnclickShowPopup_text' => $data['OnclickShowPopup_text'],
 		'OnclickShowPopup_status' => $data['OnclickShowPopup_status'],
 		'OnclickShowPopup_group' => $data['OnclickShowPopup_group'],
+		'OnclickShowPopup_date' => $data['OnclickShowPopup_date'],
 		'OnclickShowPopup_id' => $data['OnclickShowPopup_id']
 	);
 }
@@ -64,6 +65,7 @@ if (isset($_POST['OnclickShowPopup_form_submit']) && $_POST['OnclickShowPopup_fo
 	
 	$form['OnclickShowPopup_status'] = isset($_POST['OnclickShowPopup_status']) ? $_POST['OnclickShowPopup_status'] : '';
 	$form['OnclickShowPopup_group'] = isset($_POST['OnclickShowPopup_group']) ? $_POST['OnclickShowPopup_group'] : '';
+	$form['OnclickShowPopup_date'] = isset($_POST['OnclickShowPopup_date']) ? $_POST['OnclickShowPopup_date'] : '';
 
 	//	No errors found, we can add this Group to the table
 	if ($OnclickShowPopup_error_found == FALSE)
@@ -73,10 +75,12 @@ if (isset($_POST['OnclickShowPopup_form_submit']) && $_POST['OnclickShowPopup_fo
 				SET `OnclickShowPopup_title` = %s,
 				`OnclickShowPopup_text` = %s,
 				`OnclickShowPopup_status` = %s,
-				`OnclickShowPopup_group` = %s
+				`OnclickShowPopup_group` = %s,
+				`OnclickShowPopup_date` = %s
 				WHERE OnclickShowPopup_id = %d
 				LIMIT 1",
-				array($form['OnclickShowPopup_title'], $form['OnclickShowPopup_text'], $form['OnclickShowPopup_status'], $form['OnclickShowPopup_group'], $did)
+				array($form['OnclickShowPopup_title'], $form['OnclickShowPopup_text'], 
+				$form['OnclickShowPopup_status'], $form['OnclickShowPopup_group'], $form['OnclickShowPopup_date'], $did)
 			);
 		$wpdb->query($sSql);
 		
@@ -96,7 +100,8 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
 {
 ?>
   <div class="updated fade">
-    <p><strong><?php echo $OnclickShowPopup_success; ?> <a href="<?php echo WP_OnclickShowPopup_ADMIN_URL; ?>"><?php _e('Click here to view the details', 'onclick-show-popup'); ?></a></strong></p>
+    <p><strong><?php echo $OnclickShowPopup_success; ?> <a href="<?php echo WP_OnclickShowPopup_ADMIN_URL; ?>">
+	<?php _e('Click here to view the details', 'onclick-show-popup'); ?></a></strong></p>
   </div>
   <?php
 }
@@ -109,11 +114,11 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
       <h3><?php _e('Update popup details', 'onclick-show-popup'); ?></h3>
 	  
 	  <label for="tag-title"><?php _e('Popup title', 'onclick-show-popup'); ?></label>
-      <textarea name="OnclickShowPopup_title" id="OnclickShowPopup_title" cols="130" rows="3"><?php echo esc_html(stripslashes($form['OnclickShowPopup_title'])); ?></textarea>
+      <textarea name="OnclickShowPopup_title" id="OnclickShowPopup_title" cols="100" rows="3"><?php echo esc_html(stripslashes($form['OnclickShowPopup_title'])); ?></textarea>
       <p><?php _e('Please enter your popup title.', 'onclick-show-popup'); ?></p>
 	  
 	  <label for="tag-message"><?php _e('Popup message', 'onclick-show-popup'); ?></label>
-      <textarea name="OnclickShowPopup_text" id="OnclickShowPopup_text" cols="130" rows="7"><?php echo esc_html(stripslashes($form['OnclickShowPopup_text'])); ?></textarea>
+      <textarea name="OnclickShowPopup_text" id="OnclickShowPopup_text" cols="100" rows="7"><?php echo esc_html(stripslashes($form['OnclickShowPopup_text'])); ?></textarea>
       <p><?php _e('Please enter your popup message. message to show when popup title clicked.', 'onclick-show-popup'); ?></p>
 	  
       <label for="tag-select-gallery-group"><?php _e('Select popup group', 'onclick-show-popup'); ?></label>
@@ -156,6 +161,10 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
         <option value='NO' <?php if($form['OnclickShowPopup_status']=='NO') { echo 'selected="selected"' ; } ?>>No</option>
       </select>
       <p><?php _e('Do you want to show this message into the popup window', 'onclick-show-popup'); ?></p>
+	  
+		<label for="tag-title"><?php _e('Expiration date', 'onclick-show-popup'); ?></label>
+		<input name="OnclickShowPopup_date" type="text" id="OnclickShowPopup_date" value="<?php echo substr($form['OnclickShowPopup_date'],0,10); ?>" maxlength="10" />
+		<p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-31 : Is equal to no expire.', 'onclick-show-popup'); ?></p>
 	  
       <input name="OnclickShowPopup_id" id="OnclickShowPopup_id" type="hidden" value="">
       <input type="hidden" name="OnclickShowPopup_form_submit" value="yes"/>

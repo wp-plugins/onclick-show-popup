@@ -39,15 +39,17 @@ if (isset($_POST['OnclickShowPopup_form_submit']) && $_POST['OnclickShowPopup_fo
 	
 	$form['OnclickShowPopup_status'] = isset($_POST['OnclickShowPopup_status']) ? $_POST['OnclickShowPopup_status'] : '';
 	$form['OnclickShowPopup_group'] = isset($_POST['OnclickShowPopup_group']) ? $_POST['OnclickShowPopup_group'] : '';
+	$form['OnclickShowPopup_date'] = isset($_POST['OnclickShowPopup_date']) ? $_POST['OnclickShowPopup_date'] : '';
 
 	//	No errors found, we can add this Group to the table
 	if ($OnclickShowPopup_error_found == FALSE)
 	{
 		$sql = $wpdb->prepare(
 			"INSERT INTO `".WP_OnclickShowPopup_TABLE."`
-			(`OnclickShowPopup_title`, `OnclickShowPopup_text`, `OnclickShowPopup_status`, `OnclickShowPopup_group`)
-			VALUES(%s, %s, %s, %s)",
-			array($form['OnclickShowPopup_title'], $form['OnclickShowPopup_text'], $form['OnclickShowPopup_status'], $form['OnclickShowPopup_group'])
+			(`OnclickShowPopup_title`, `OnclickShowPopup_text`, `OnclickShowPopup_status`, `OnclickShowPopup_group`, `OnclickShowPopup_date`)
+			VALUES(%s, %s, %s, %s, %s)",
+			array($form['OnclickShowPopup_title'], $form['OnclickShowPopup_text'], 
+				$form['OnclickShowPopup_status'], $form['OnclickShowPopup_group'], $form['OnclickShowPopup_date'])
 		);
 		$wpdb->query($sql);
 		
@@ -93,11 +95,11 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
       <h3><?php _e('Add new popup details', 'onclick-show-popup'); ?></h3>
       
 	  <label for="tag-title"><?php _e('Popup title', 'onclick-show-popup'); ?></label>
-      <textarea name="OnclickShowPopup_title" id="OnclickShowPopup_title" cols="130" rows="3"></textarea>
+      <textarea name="OnclickShowPopup_title" id="OnclickShowPopup_title" cols="100" rows="3"></textarea>
       <p><?php _e('Please enter your popup title.', 'onclick-show-popup'); ?></p>
 	  
 	  <label for="tag-message"><?php _e('Popup message', 'onclick-show-popup'); ?></label>
-      <textarea name="OnclickShowPopup_text" id="OnclickShowPopup_text" cols="130" rows="7"></textarea>
+      <textarea name="OnclickShowPopup_text" id="OnclickShowPopup_text" cols="100" rows="7"></textarea>
       <p><?php _e('Please enter your popup message. message to show when popup title clicked.', 'onclick-show-popup'); ?></p>
 	  
       <label for="tag-select-gallery-group"><?php _e('Select popup group', 'onclick-show-popup'); ?></label>
@@ -134,6 +136,10 @@ if ($OnclickShowPopup_error_found == FALSE && strlen($OnclickShowPopup_success) 
         <option value='NO'>No</option>
       </select>
       <p><?php _e('Do you want to show this message into the popup window', 'onclick-show-popup'); ?></p>
+	  
+	<label for="tag-title"><?php _e('Expiration date', 'onclick-show-popup'); ?></label>
+	<input name="OnclickShowPopup_date" type="text" id="OnclickShowPopup_date" value="9999-12-31" maxlength="10" />
+	<p><?php _e('Please enter the expiration date in this format YYYY-MM-DD <br /> 9999-12-31 : Is equal to no expire.', 'onclick-show-popup'); ?></p>
 	  
       <input name="OnclickShowPopup_id" id="OnclickShowPopup_id" type="hidden" value="">
       <input type="hidden" name="OnclickShowPopup_form_submit" value="yes"/>

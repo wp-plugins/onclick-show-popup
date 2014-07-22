@@ -4,7 +4,7 @@ Plugin Name: Onclick show popup
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Description: Sometimes its useful to add a pop up to your website to show your ads, special announcement and offers. Using this plug-in you can creates unblockable, dynamic and fully configurable popups for your blog.
 Author: Gopi Ramasamy
-Version: 6.2
+Version: 6.3
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 License: GPLv2 or later
@@ -39,6 +39,7 @@ function OnclickShowPopup()
 	$OnclickShowPopup_theme = get_option('OnclickShowPopup_theme');
 	
 	$sSql = "select OnclickShowPopup_title,OnclickShowPopup_text from ".WP_OnclickShowPopup_TABLE." where OnclickShowPopup_status='YES'";
+	$sSql = $sSql . " and ( OnclickShowPopup_date >= NOW() or OnclickShowPopup_date = '0000-00-00 00:00:00' )";
 	
 	if($OnclickShowPopup_widget <> "")
 	{
@@ -123,6 +124,8 @@ function OnclickShowPopup_activation()
 		$sSql = $iIns . " VALUES ('$t4', '$c1', 'YES', 'Group1', '0000-00-00 00:00:00');";
 		$wpdb->query($sSql);
 	}
+	
+	
 	add_option('OnclickShowPopup_title', "Onclick show popup");
 	add_option('OnclickShowPopup_theme', "light_rounded");
 	add_option('OnclickShowPopup_widget', "Group1");
@@ -258,6 +261,7 @@ function OnclickShowPopup_shortcode( $atts )
 	$OnclickShowPopup_theme = get_option('OnclickShowPopup_theme');
 	
 	$sSql = "select OnclickShowPopup_title,OnclickShowPopup_text from ".WP_OnclickShowPopup_TABLE." where OnclickShowPopup_status='YES'";
+	$sSql = $sSql . " and ( OnclickShowPopup_date >= NOW() or OnclickShowPopup_date = '0000-00-00 00:00:00' )";
 	
 	if($OnclickShowPopup_widget <> "")
 	{

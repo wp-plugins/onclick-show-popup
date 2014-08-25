@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 3.9.1
-Stable tag: 6.3
+Tested up to: 4.0
+Stable tag: 6.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -38,8 +38,6 @@ Onclick show popup It is graphical way to show your content. When the user click
 * Short code for posts and pages
 
 == Installation ==
-
-**Installation instruction and configuration**  
 
 [Installation instruction and configuration](http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/)
 
@@ -109,6 +107,10 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
 1. Added expiration date option for popup message.
 
+= 6.4 =
+
+1. Tested up to 4.0
+
 == Changelog ==
 
 = 1.0 =
@@ -158,3 +160,7 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 = 6.3 =
 
 1. Added expiration date option for popup message.
+
+= 6.4 =
+
+1. Tested up to 4.0

@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup
 Requires at least: 3.0
-Tested up to: 4.0
-Stable tag: 6.4
+Tested up to: 4.1
+Stable tag: 6.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -111,6 +111,10 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
 1. Tested up to 4.0
 
+= 6.5 =
+
+1. Tested up to 4.1
+
 == Changelog ==
 
 = 1.0 =
@@ -164,3 +168,7 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 = 6.4 =
 
 1. Tested up to 4.0
+
+= 6.5 =
+
+1. Tested up to 4.1

@@ -3,14 +3,14 @@ Contributors: www.gopiplus.com, gopiplus
 Donate link: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
-Tags: Onclick, popup
+Tags: Onclick, popup, prettyphoto
 Requires at least: 3.0
-Tested up to: 4.1
-Stable tag: 6.5
+Tested up to: 4.2.2
+Stable tag: 6.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
-Sometimes its useful to add a pop up to your website to show important content. Using this plug-in you can creates unblockable popup.
+Sometimes its useful to add a popup to your website to show important content. Using this plugin you can creates unblockable popup.
 
 == Description ==
 
@@ -21,7 +21,7 @@ More information : [More information](http://www.gopiplus.com/work/2011/12/17/wo
 User comments and suggestion : [User comments and suggestion](http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/)			 	
 About author : [About author](http://www.gopiplus.com/work/) 	
 
-Onclick show popup It is graphical way to show your content. When the user clicks on a link, a new window opens and displays the content. This is easy and effective way to show your detail information to user. This plugin use the JQuery script to show the popup content.
+Onclick show popup It is graphical way to show your content. When the user clicks on a link, a new window opens and displays the content. This is easy and effective way to show your detail information to user. This plugin uses the JQuery script to show the popup content.
 
 **Features of this plugin**   	
 
@@ -115,6 +115,11 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
 1. Tested up to 4.1
 
+= 6.6 =
+
+1. Tested up to 4.2.2
+2. Updated the jquery.prettyPhoto.js to latest version.
+
 == Changelog ==
 
 = 1.0 =
@@ -172,3 +177,8 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 = 6.5 =
 
 1. Tested up to 4.1
+
+= 6.6 =
+
+1. Tested up to 4.2.2
+2. Updated the jquery.prettyPhoto.js to latest version.

@@ -5,8 +5,8 @@ Author URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-sho
 Plugin URI: http://www.gopiplus.com/work/2011/12/17/wordpress-plugin-onclick-show-popup-for-content/
 Tags: Onclick, popup, prettyphoto
 Requires at least: 3.0
-Tested up to: 4.2.2
-Stable tag: 6.6
+Tested up to: 4.3
+Stable tag: 6.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	
@@ -120,6 +120,10 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 1. Tested up to 4.2.2
 2. Updated the jquery.prettyPhoto.js to latest version.
 
+= 6.7 =
+
+1. Tested up to 4.3
+
 == Changelog ==
 
 = 1.0 =
@@ -182,3 +186,7 @@ Plugin *.po file (onclick-show-popup.po) available in the languages folder.
 
 1. Tested up to 4.2.2
 2. Updated the jquery.prettyPhoto.js to latest version.
+
+= 6.7 =
+
+1. Tested up to 4.3

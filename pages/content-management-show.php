@@ -4,6 +4,7 @@
 if (isset($_POST['frm_OnclickShowPopup_display']) && $_POST['frm_OnclickShowPopup_display'] == 'yes')
 {
 	$did = isset($_GET['did']) ? $_GET['did'] : '0';
+	if(!is_numeric($did)) { die('<p>Are you sure you want to do this?</p>'); }
 	
 	$OnclickShowPopup_success = '';
 	$OnclickShowPopup_success_msg = FALSE;
@@ -62,7 +63,6 @@ if (isset($_POST['frm_OnclickShowPopup_display']) && $_POST['frm_OnclickShowPopu
       <table width="100%" class="widefat" id="straymanage">
         <thead>
           <tr>
-            <th width="3%" class="check-column" scope="col"><input type="checkbox" name="OnclickShowPopup_group_item[]" /></th>
 			<th scope="col"><?php _e('Popup Title', 'onclick-show-popup'); ?></th>
             <th scope="col"><?php _e('Group', 'onclick-show-popup'); ?></th>
 			<th scope="col"><?php _e('Display', 'onclick-show-popup'); ?></th>
@@ -71,7 +71,6 @@ if (isset($_POST['frm_OnclickShowPopup_display']) && $_POST['frm_OnclickShowPopu
         </thead>
 		<tfoot>
           <tr>
-            <th class="check-column" scope="col"><input type="checkbox" name="OnclickShowPopup_group_item[]" /></th>
 			<th scope="col"><?php _e('Popup Title', 'onclick-show-popup'); ?></th>
             <th scope="col"><?php _e('Group', 'onclick-show-popup'); ?></th>
 			<th scope="col"><?php _e('Display', 'onclick-show-popup'); ?></th>
@@ -87,7 +86,6 @@ if (isset($_POST['frm_OnclickShowPopup_display']) && $_POST['frm_OnclickShowPopu
 				{
 					?>
 					<tr class="<?php if ($i&1) { echo'alternate'; } else { echo ''; }?>">
-					<td align="left"><input type="checkbox" value="<?php echo $data['OnclickShowPopup_id']; ?>" name="OnclickShowPopup_group_item[]"></td>
 					<td><?php echo stripslashes($data['OnclickShowPopup_title']); ?>
 					<div class="row-actions">
 					<span class="edit"><a title="Edit" href="<?php echo WP_OnclickShowPopup_ADMIN_URL; ?>&amp;ac=edit&amp;did=<?php echo $data['OnclickShowPopup_id']; ?>"><?php _e('Edit', 'onclick-show-popup'); ?></a> | </span>
@@ -104,7 +102,7 @@ if (isset($_POST['frm_OnclickShowPopup_display']) && $_POST['frm_OnclickShowPopu
 			}
 			else
 			{
-				?><tr><td colspan="5" align="center"><?php _e('No records available.', 'onclick-show-popup'); ?></td></tr><?php 
+				?><tr><td colspan="4" align="center"><?php _e('No records available.', 'onclick-show-popup'); ?></td></tr><?php 
 			}
 			?>
 		</tbody>
